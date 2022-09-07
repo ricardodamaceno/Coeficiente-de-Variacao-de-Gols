@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;valida-preco/drivers/chromedriver&apos; to &apos;chromedrivers&apos;" description="Rename resource &apos;chromedriver&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="drivers/chromedriver" name="chromedrivers" stamp="1659818196532" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;valida-preco/drivers/chromedrivers&apos; to &apos;chromedriver&apos;" description="Rename resource &apos;chromedrivers&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="drivers/chromedrivers" name="chromedriver" stamp="1659818239044" updateReferences="true"/>
+</session>
