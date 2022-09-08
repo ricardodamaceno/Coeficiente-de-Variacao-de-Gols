@@ -1,0 +1,25 @@
+package com.apostas;
+
+public enum TestaEnun {
+	TRINTA("30");
+
+	TestaEnun(String i) {
+			
+	}
+	
+	public static TestaEnun fromValue(int v) {
+//		int 30 = TRINTA;
+        return TestaEnun.TRINTA.valueOf("30");
+    }
+
+	
+	public static void main(String[] args) {
+		TRINTA.toString(30);
+		System.out.println(TRINTA.fromValue(30));
+	}
+
+	void toString(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,0 +1,28 @@
+package com.apostas;
+
+public enum TestaEnun {
+	TRINTA(30), CINQUENTA(50), SETENTA(70);
+	
+//	private int numero = 30;
+
+	TestaEnun(int i) {
+			
+	}
+	
+//	public static TestaEnun fromValue(int v) {
+////		int 30 = TRINTA;
+//        return TestaEnun.TRINTA.;
+//    }
+//
+//	void toString(int i) {
+//		
+//		numero = i;
+//		TRINTA = numero;
+//	}
+	
+	public static void main(String[] args) {
+		System.out.println(30);
+	}
+
+	
+}

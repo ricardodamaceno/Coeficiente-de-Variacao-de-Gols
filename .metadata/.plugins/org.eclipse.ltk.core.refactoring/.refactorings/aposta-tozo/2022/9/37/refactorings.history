@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;aposta-tozo&apos;&#x0A;- Original project: &apos;aposta-tozo&apos;&#x0A;- Original element: &apos;com.apostas.TestaEnun.java&apos;" description="Delete element" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.apostas{TestaEnun.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1662603965941" subPackages="false" version="1.0"/>
+</session>
