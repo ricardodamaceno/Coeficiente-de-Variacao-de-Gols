@@ -37,7 +37,7 @@ public class Time {
 	private int tamanhoMenorQueDez = 0;
 
 	private double varianciaAoQuadrado = 0;
-
+	
 	private List<Desvio> desvio = new ArrayList<Desvio>();
 
 	@Before
@@ -60,9 +60,6 @@ public class Time {
 		driver.get("https://fbref.com/pt/search/search.fcgi?search=" + time);
 		String[] s = time.trim().split(" ");
 		
-//		for(String ss: s) {
-//			System.out.println(s);
-//		}
 		if (driver.getCurrentUrl().endsWith(s[s.length-1])) {
 			// isso é pras situações em que há mais de um opção de time pra escolher
 			//o gatilho é ele ver se a url termina com o nome do time  
@@ -136,6 +133,7 @@ public class Time {
 		double variancia = varianciaAoQuadrado / desvio.size();
 		double desvioPadrao = Math.sqrt(variancia);
 		double coeficienteDeVariacao = (desvioPadrao / mediaGol);
+		int porcentagemDeVariacao = (int) ((coeficienteDeVariacao * 100) / mediaGol);
 		System.out.println(gol);
 		System.out.println(mediaGol);
 		System.out.println(varianciaAoQuadrado);
@@ -143,6 +141,6 @@ public class Time {
 		System.out.println(desvioPadrao);
 		System.out.println("A variação é de " + coeficienteDeVariacao 
 				+ " gols em relção à médiia de " + mediaGol + " gols");
-
+		System.out.println("A porcentagem de variação é de: " + porcentagemDeVariacao + "%");
 	}
 }
