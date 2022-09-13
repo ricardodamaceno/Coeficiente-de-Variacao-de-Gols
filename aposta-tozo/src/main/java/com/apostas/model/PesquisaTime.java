@@ -75,10 +75,6 @@ public class PesquisaTime{
 		this.nomeTime = nome;
 	}
 	
-//	public CoeficienteDeVariacao(double coeficienteDeVariacao) {
-//		this.coeficienteDeVariacao = coeficienteDeVariacao;
-//	}
-	
 	public PesquisaTime() {
 	}
 	
@@ -108,16 +104,21 @@ public class PesquisaTime{
 		if (driver.getCurrentUrl().endsWith(s[s.length-1])) {
 			// isso é pras situações em que há mais de um opção de time pra escolher
 			//o gatilho é ele ver se a url termina com o nome do time  
-			//então ele pega primeira ocorrencia que aparecer o nome do time e clica
+			//se terminar então ele entra nessa condição
+			//ele pega primeira ocorrencia que aparecer o nome do time e clica
 			System.out.println(s[s.length-1]);
-//			String timeUpperCase = s[0].substring(0, 1).toUpperCase().concat(s[0].substring(1));
-			//aqui era pra transformar a primeira letra em maiúscula
+			String timeUpperCase = s[0].substring(0, 1).toUpperCase().concat(s[0].substring(1));
+			nomeTime = timeUpperCase;
+			//aqui é pra transformar a primeira letra em maiúscula, caso não for colocada na pesquisa
 			driver.findElement(By.linkText(nomeTime)).click();
+			//aqui ele acho a primeira ocorrência e clicou
 		}
 		for (int i = 1; i <= 100; i++) {
 			try {
 				// aqui vai procurando os gols feitos pelo time. O "i" vai sendo alterado pra
 				// pegar o valor do gol na linha debaixo da tabela no site
+				// foi utlizado o "try catch" pq estava dando uma excepion em algumas pesquisas e 
+				//impossibilitando o "for" de continuar
 				String textGol = driver
 						.findElement(By.cssSelector("#matchlogs_for tr:nth-child(" + i + ") > .right:nth-child(8)"))
 						.getText();
@@ -125,7 +126,7 @@ public class PesquisaTime{
 //				.right:nth-child(8) = coluna
 				if (!textGol.isEmpty()) {
 					// aqui eu verifico se o valor for diferente de vazio eu vou adicionado a
-					// ArrayList
+					// ArrayList, e se for vazio significa que acabou o laço
 					int numeroDeGols = Integer.parseInt(textGol);
 					// aqui foi preciso transformar em int para adicionar ao somaGol
 					somaGol += numeroDeGols;
@@ -150,22 +151,24 @@ public class PesquisaTime{
 		try {
 			// isso é por conta de alguns times terem menos de 10 jogos
 			for (int a = golsEstipulados; a >= tamanho; a--) {
-
-				// inicia o calculo do coeficiente de variação
+				// esse "for reverso" foi para pegar os 10 últimos gols da lista"
+				
+				// inicio do cálculo do coeficiente de variação
 				double fazDesvio = gol.get(a).getGol() - mediaGol;
 				desvio.add(new Desvio(fazDesvio));
-				// como eu preciso pegar os 10 ultimos resultados então foi preciso fazer um "for"
-				// reverso
 				int index0 = golsEstipulados - a; //
 				double quadrado = Math.pow(desvio.get(index0).getDesvio(), 2.0);
 				varianciaAoQuadrado += quadrado;
 
 			}
 		} catch (IndexOutOfBoundsException e) {
-			//aqui eu zero a varianciaAoQuadrado e a lista de desvio
+			//caso dê essa exception é sinal que o time tem menos de 10 jogos
+			//então eu preciso zerar os atributos e limpar a lista para começar 
+			//um novo laço para pegar o jogos 
+			
 			varianciaAoQuadrado = 0;
 			desvio.removeAll(desvio);
-			//nesse caso a exceção acima foi o gatilho pra usar esse for para times com menos de 10 gols
+			
 			for (int a = golsEstipulados; a >= tamanhoMenorQueDez; a--) {
 				double fazDesvio = gol.get(a).getGol() - mediaGol;
 				desvio.add(new Desvio(fazDesvio));
