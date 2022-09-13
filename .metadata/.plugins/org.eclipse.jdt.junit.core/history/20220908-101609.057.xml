@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="Time" project="aposta-tozo" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="validacoes.Time" time="15.755">
-    <testcase name="adicionaGols" classname="validacoes.Time" time="15.755"/>
-  </testsuite>
-</testrun>

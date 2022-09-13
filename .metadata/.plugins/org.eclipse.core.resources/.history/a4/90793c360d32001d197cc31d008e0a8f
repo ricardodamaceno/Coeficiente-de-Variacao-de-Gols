@@ -1,0 +1,18 @@
+package com.apostas.model;
+
+public class CoeficienteDeVariacao {
+
+	double coeficienteDeVariacao;
+
+	public double getCoeficienteDeVariacao() {
+		return coeficienteDeVariacao;
+	}
+
+	public void setCoeficienteDeVariacao(double coeficienteDeVariacao) {
+		this.coeficienteDeVariacao = coeficienteDeVariacao;
+	}
+	
+	public CoeficienteDeVariacao(double coeficienteDeVariacao) {
+		this.coeficienteDeVariacao = coeficienteDeVariacao
+	}
+}
