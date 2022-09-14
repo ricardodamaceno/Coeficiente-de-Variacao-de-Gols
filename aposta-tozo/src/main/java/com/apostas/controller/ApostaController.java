@@ -56,7 +56,7 @@ public class ApostaController {
 			} catch (NoSuchElementException e) {
 				System.out.println("deu erro aqui" + e);
 				time.tearDown();
-				pesqTimes.removeAll(pesqTimes);
+				pesqTimes.remove(pesqTimes.size()-1);
 				return "redirect:/add-erro";
 			}
 			
