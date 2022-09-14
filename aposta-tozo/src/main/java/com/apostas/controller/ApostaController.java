@@ -3,11 +3,10 @@ package com.apostas.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
+import org.openqa.selenium.NoSuchElementException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.apostas.model.CoeficienteDeVariacao;
@@ -26,6 +25,12 @@ public class ApostaController {
 	
 	List<PesquisaTime> media = new ArrayList<>();
 	
+	@GetMapping("/add-erro")
+	public String adicionaAposErro() {
+
+		return "add-erro";
+	}
+	
 	@GetMapping("/add")
 	public String adicionaNome() {
 
@@ -42,11 +47,18 @@ public class ApostaController {
 			
 			time.setUp();
 
-			time.adicionaGols();
-			
-			cv.add((PesquisaTime) new CoeficienteDeVariacao(time.getCoeficienteDeVariacao()));
-			porcentagem.add((PesquisaTime) new PorcentagemDeVariacao(time.getPorcentagemDeVariacao()));
-			media.add((PesquisaTime) new MediaGol(time.getMediaGol()));
+			try {
+				time.adicionaGols();
+				
+				cv.add((PesquisaTime) new CoeficienteDeVariacao(time.getCoeficienteDeVariacao()));
+				porcentagem.add((PesquisaTime) new PorcentagemDeVariacao(time.getPorcentagemDeVariacao()));
+				media.add((PesquisaTime) new MediaGol(time.getMediaGol()));
+			} catch (NoSuchElementException e) {
+				System.out.println("deu erro aqui" + e);
+				time.tearDown();
+				pesqTimes.removeAll(pesqTimes);
+				return "redirect:/add-erro";
+			}
 			
 			time.tearDown();
 		}

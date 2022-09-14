@@ -24,4 +24,5 @@
     <fullyQualifiedTypeName name="java.text.NumberFormat"/>
     <fullyQualifiedTypeName name="com.apostas.model.PorcentagemDeVariacao"/>
     <fullyQualifiedTypeName name="com.apostas.model.MediaGol"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.NoSuchElementException"/>
 </qualifiedTypeNameHistroy>
