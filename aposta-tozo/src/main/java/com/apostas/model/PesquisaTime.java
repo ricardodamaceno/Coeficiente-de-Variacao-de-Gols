@@ -144,7 +144,7 @@ public class PesquisaTime{
 //		    calcula a media 
 		mediaGol = (double) (somaGol / gol.size());
 		golsEstipulados = gol.size() - 1;
-		tamanho = gol.size() - 10; // quantidade de jogos que meu cliente quer que compare, sendo que ele gostaria
+		tamanho = gol.size() - 5; // quantidade de jogos que meu cliente quer que compare, sendo que ele gostaria
 									// de apenas os últimos 10 jogos
 
 		
