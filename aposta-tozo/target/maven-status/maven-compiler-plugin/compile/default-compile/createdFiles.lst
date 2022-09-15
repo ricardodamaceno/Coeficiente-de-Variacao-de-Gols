@@ -1,7 +1,7 @@
+com/apostas/model/DesvioPadrao.class
 com/apostas/model/PesquisaTime.class
 com/apostas/controller/ApostaController.class
 com/apostas/model/CoeficienteDeVariacao.class
-com/apostas/model/PorcentagemDeVariacao.class
 com/apostas/ApplicationAposta.class
 com/apostas/model/MediaGol.class
 com/apostas/model/Gols.class
