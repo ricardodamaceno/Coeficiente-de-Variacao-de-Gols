@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.apostas.model.CoeficienteDeVariacao;
+import com.apostas.model.DesvioPadrao;
 import com.apostas.model.MediaGol;
 import com.apostas.model.PesquisaTime;
-import com.apostas.model.PorcentagemDeVariacao;
 
 @Controller
 public class ApostaController {
@@ -21,7 +21,7 @@ public class ApostaController {
 	
 	List<PesquisaTime> cv = new ArrayList<>();
 	
-	List<PesquisaTime> porcentagem = new ArrayList<>();
+	List<PesquisaTime> desvio = new ArrayList<>();
 	
 	List<PesquisaTime> media = new ArrayList<>();
 	
@@ -51,7 +51,7 @@ public class ApostaController {
 				time.adicionaGols();
 				
 				cv.add((PesquisaTime) new CoeficienteDeVariacao(time.getCoeficienteDeVariacao()));
-				porcentagem.add((PesquisaTime) new PorcentagemDeVariacao(time.getPorcentagemDeVariacao()));
+				desvio.add((PesquisaTime) new DesvioPadrao(time.getDesvioPadrao()));
 				media.add((PesquisaTime) new MediaGol(time.getMediaGol()));
 			} catch (NoSuchElementException e) {
 				System.out.println("deu erro aqui" + e);
@@ -75,7 +75,7 @@ public class ApostaController {
 		
 		mv.addObject("cv", cv);
 		
-		mv.addObject("porcentagem", porcentagem);
+		mv.addObject("desvio", desvio);
 		
 		mv.addObject("media", media);
 		
@@ -87,7 +87,7 @@ public class ApostaController {
 		
 		pesqTimes.removeAll(pesqTimes);
 		cv.removeAll(cv);
-		porcentagem.removeAll(porcentagem);
+		desvio.removeAll(desvio);
 		media.removeAll(media);
 		return "redirect:/add";
 	}

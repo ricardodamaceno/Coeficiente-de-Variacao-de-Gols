@@ -33,14 +33,14 @@ public class PesquisaTime{
 		this.coeficienteDeVariacao = coeficienteDeVariacao;
 	}
 	
-	public int porcentagemDeVariacao;
+	public double desvioPadrao;
 
-	public int getPorcentagemDeVariacao() {
-		return porcentagemDeVariacao;
+	public double getDesvioPadrao() {
+		return desvioPadrao;
 	}
 
-	public void setPorcentagemDeVariacao(int porcentagemDeVariacao) {
-		this.porcentagemDeVariacao = porcentagemDeVariacao;
+	public void setDesvioPadrao(double desvioPadrao) {
+		this.desvioPadrao = desvioPadrao;
 	}
 	
 	public double mediaGol;
@@ -155,6 +155,7 @@ public class PesquisaTime{
 				
 				// inicio do cálculo do coeficiente de variação
 				double fazDesvio = gol.get(a).getGol() - mediaGol;
+//				System.out.println(fazDesvio);
 				desvio.add(new Desvio(fazDesvio));
 				int index0 = golsEstipulados - a; //
 				double quadrado = Math.pow(desvio.get(index0).getDesvio(), 2.0);
@@ -162,7 +163,7 @@ public class PesquisaTime{
 
 			}
 		} catch (IndexOutOfBoundsException e) {
-			//caso dê essa exception é sinal que o time tem menos de 10 jogos
+			//caso dê essa exception é sinal que o time tem menos de 5 jogos
 			//então eu preciso zerar os atributos e limpar a lista para começar 
 			//um novo laço para pegar o jogos 
 			
@@ -179,12 +180,14 @@ public class PesquisaTime{
 		}
 //		aqui é a plicação das fórmulas
 		double variancia = varianciaAoQuadrado / desvio.size();
-		double desvioPadrao = Math.sqrt(variancia);
-		coeficienteDeVariacao = (desvioPadrao / mediaGol);//
-		porcentagemDeVariacao = (int) ((coeficienteDeVariacao * 100) / mediaGol);//
+		desvioPadrao = Math.sqrt(variancia);
+		
+		coeficienteDeVariacao = (desvioPadrao / mediaGol)*100;//
+//		porcentagemDeVariacao = (int) ((coeficienteDeVariacao * 100) / mediaGol);//
 		
 		coeficienteDeVariacao = (double) (Math.round(coeficienteDeVariacao*100.0)/100.0);
 		mediaGol = (double) (Math.round(mediaGol*100.0)/100.0);
+		desvioPadrao = (double) (Math.round(desvioPadrao*100.0)/100.0);
 		//isso arrendondo o doble pra duas casas decimais
 		System.out.println(gol);
 		System.out.println(mediaGol);//
@@ -193,7 +196,7 @@ public class PesquisaTime{
 		System.out.println(desvioPadrao);
 		System.out.println("A variação é de " + coeficienteDeVariacao 
 				+ " gols em relção à médiia de " + mediaGol + " gols");
-		System.out.println("A porcentagem de variação é de: " + porcentagemDeVariacao + "%");
+//		System.out.println("A porcentagem de variação é de: " + porcentagemDeVariacao + "%");
 		System.out.println(nomeTime);
 	}
 

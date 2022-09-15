@@ -1,5 +1,0 @@
-package com.apostas;
-
-public enum TestaEnun {
-	TRINTA, CINQUENTA, SETENTA;
-}

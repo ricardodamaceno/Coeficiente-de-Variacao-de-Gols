@@ -17,6 +17,26 @@
 	.space-between {
             justify-content: space-between;
         }
+    [data-tooltip] {
+  position: relative;
+  font-weight: bold;
+}
+
+[data-tooltip]:after {
+  display: none;
+  position: absolute;
+  padding: 5px;
+  border-radius: 3px;
+  bottom: calc(100% + 2px);
+  content: attr(data-tooltip);
+  white-space: nowrap;
+  background-color: #0095ff;
+  color: White;
+}
+
+[data-tooltip]:hover:after {
+  display: block;
+}
 </style>
 </head>
 
@@ -51,24 +71,24 @@
 	<table class="table table-striped table-hover table-bordered border-dark">
 		<thead>
 			<tr>
-				<th scope="col">CV</th>
+				<th scope="col" data-tooltip="Coeficiente de Variação">CV(%)</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr data-th-each= "coeVar : ${cv}">
-				<td data-th-text = "${coeVar.coeficienteDeVariacao}"></td>
+				<td data-th-text = "${coeVar.coeficienteDeVariacao} + '%'"></td>
 			</tr>
 		</tbody>
 	</table>
 	<table class="table table-striped table-hover table-bordered border-dark">
 		<thead>
 			<tr>
-				<th scope="col">% Var.</th>
+				<th scope="col" data-tooltip="Desvio Padrão">DP</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-th-each= "porcent : ${porcentagem}">
-				<td data-th-text = "${porcent.porcentagemDeVariacao} + '%'"></td>
+			<tr data-th-each= "desvioPadrao : ${desvio}">
+				<td data-th-text = "${desvioPadrao.desvioPadrao} + ' gols'"></td>
 			</tr>
 		</tbody>
 	</table>
