@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.apostas.model.CoeficienteDeVariacao;
 import com.apostas.model.DesvioPadrao;
-import com.apostas.model.JogosAnalisados;
 import com.apostas.model.MediaGol;
 import com.apostas.model.MediaGolsTomados;
 import com.apostas.model.PesquisaTime;
@@ -56,11 +54,11 @@ public class ApostaController {
 			try {
 				time.adicionaGols();
 				
-				cv.add((PesquisaTime) new CoeficienteDeVariacao(time.getCoeficienteDeVariacao()));
+				cv.add(new PesquisaTime(time.getCoeficienteDeVariacao()));
 				desvio.add((PesquisaTime) new DesvioPadrao(time.getDesvioPadrao()));
 				media.add((PesquisaTime) new MediaGol(time.getMediaGol()));
 				mediaTomados.add((PesquisaTime) new MediaGolsTomados(time.getMediaGolsTomados()));
-				jogosAnalisados.add((PesquisaTime) new JogosAnalisados(time.getJogosAnalisados()));
+				jogosAnalisados.add(new PesquisaTime(time.getJogosAnalisados()));
 			} catch (NoSuchElementException e) {
 				//isso é pro nome inválido
 				System.out.println("deu erro aqui" + e);

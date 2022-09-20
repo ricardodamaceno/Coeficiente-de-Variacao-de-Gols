@@ -15,55 +15,49 @@ public class PesquisaTime{
 	
 	private String nomeTime;
 
-	
+	private double coeficienteDeVariacao;
 
-	public double coeficienteDeVariacao;
-	
+	private int jogosAnalisados;
 	
 	
 	public double desvioPadrao;
-
-	
 	
 	public double mediaGol;
-
-	
 	
 	public double mediaGolsTomados;
 	
-	public int jogosAnalisados;
-	
-	
-
 	private List<Gols> gol = new ArrayList<Gols>();
 	private List<Gols> golsTomados = new ArrayList<Gols>();
 	private List<Desvio> desvio = new ArrayList<Desvio>();
 
-	public double mediaCincoGolsFeitos;
+	private double mediaCincoGolsFeitos;
 	
-	public double mediaCincoGolsTomados;
+	private double mediaCincoGolsTomados;
 
 	private int contador = 0;
-
 
 	private int quantidadeDeJogos;
 
 	private int tamanho;
 
-
 	private double varianciaAoQuadrado;
 	
 	
-	
+	public PesquisaTime() {
+	}
 
 	public PesquisaTime(String nome) {
 		this.nomeTime = nome;
 	}
 	
-	public PesquisaTime() {
+	public PesquisaTime(double coeficienteDeVariacao) {
+		this.coeficienteDeVariacao = coeficienteDeVariacao;
 	}
 	
-	
+	public PesquisaTime(int jogosAnalisados) {
+		this.jogosAnalisados = jogosAnalisados;
+	}
+
 	public void setUp() {
 
 //		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver/chromedriver");
