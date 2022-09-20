@@ -5,4 +5,5 @@
 /home/ricardolinux/tozo/aposta-tozo/src/main/java/com/apostas/model/Desvio.java
 /home/ricardolinux/tozo/aposta-tozo/src/main/java/com/apostas/model/MediaGol.java
 /home/ricardolinux/tozo/aposta-tozo/src/main/java/com/apostas/model/PesquisaTime.java
+/home/ricardolinux/tozo/aposta-tozo/src/main/java/com/apostas/model/MediaGolsTomados.java
 /home/ricardolinux/tozo/aposta-tozo/src/main/java/com/apostas/controller/ApostaController.java

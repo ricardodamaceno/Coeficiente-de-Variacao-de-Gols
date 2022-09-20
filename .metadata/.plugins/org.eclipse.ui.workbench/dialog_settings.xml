@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="NewWizardAction">
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.ui.wizards.new.folder"/>
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.ui.wizards.new.file"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.ui.Basic"/>
 			<item value="org.eclipse.datatools.connectivity"/>
@@ -34,22 +34,18 @@
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 		<list key="orderedElements">
 			<item value="org.eclipse.jdt.ui.edit.text.java.create.getter.setter"/>
-			<item value="org.eclipse.jdt.ui.edit.text.java.generate.constructor.using.fields"/>
 			<item value="org.eclipse.help.ui.indexcommand"/>
 		</list>
 		<list key="orderedProviders">
-			<item value="org.eclipse.ui.commands"/>
 			<item value="org.eclipse.ui.commands"/>
 			<item value="org.eclipse.ui.commands"/>
 		</list>
 		<list key="textEntries">
 			<item value="1"/>
 			<item value="1"/>
-			<item value="1"/>
 		</list>
 		<list key="textArray">
 			<item value="generate g"/>
-			<item value="constr"/>
 			<item value="key"/>
 		</list>
 	</section>

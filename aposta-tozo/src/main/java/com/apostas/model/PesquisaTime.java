@@ -15,59 +15,44 @@ public class PesquisaTime{
 	
 	private String nomeTime;
 
-	public String getNomeTime() {
-		return nomeTime;
-	}
-
-	public void setNomeTime(String nomeTime) {
-		this.nomeTime = nomeTime;
-	}
+	
 
 	public double coeficienteDeVariacao;
 	
-	public double getCoeficienteDeVariacao() {
-		return coeficienteDeVariacao;
-	}
 	
-	public void setCoeficienteDeVariacao(double coeficienteDeVariacao) {
-		this.coeficienteDeVariacao = coeficienteDeVariacao;
-	}
 	
 	public double desvioPadrao;
 
-	public double getDesvioPadrao() {
-		return desvioPadrao;
-	}
-
-	public void setDesvioPadrao(double desvioPadrao) {
-		this.desvioPadrao = desvioPadrao;
-	}
+	
 	
 	public double mediaGol;
 
-	public double getMediaGol() {
-		return mediaGol;
-	}
+	
+	
+	public double mediaGolsTomados;
+	
+	public int jogosAnalisados;
+	
+	
 
-	public void setMediaGol(double mediaGol) {
-		this.mediaGol = mediaGol;
-	}
+	private List<Gols> gol = new ArrayList<Gols>();
+	private List<Gols> golsTomados = new ArrayList<Gols>();
+	private List<Desvio> desvio = new ArrayList<Desvio>();
+
+	public double mediaCincoGolsFeitos;
+	
+	public double mediaCincoGolsTomados;
 
 	private int contador = 0;
 
-	private List<Gols> gol = new ArrayList<Gols>();
 
-	private double somaGol;
-
-	private int golsEstipulados;
+	private int quantidadeDeJogos;
 
 	private int tamanho;
 
-	private int tamanhoMenorQueDez = 0;
 
 	private double varianciaAoQuadrado;
 	
-	private List<Desvio> desvio = new ArrayList<Desvio>();
 	
 	
 
@@ -122,15 +107,21 @@ public class PesquisaTime{
 				String textGol = driver
 						.findElement(By.cssSelector("#matchlogs_for tr:nth-child(" + i + ") > .right:nth-child(8)"))
 						.getText();
+				String textGolTomado = driver
+						.findElement(By.cssSelector("#matchlogs_for tr:nth-child(" + i + ") > .right:nth-child(9)"))
+						.getText();
+				
 //				("#matchlogs_for tr:nth-child(" + i + ") = linha 
 //				.right:nth-child(8) = coluna
 				if (!textGol.isEmpty()) {
 					// aqui eu verifico se o valor for diferente de vazio eu vou adicionado a
 					// ArrayList, e se for vazio significa que acabou o laço
+					System.out.println("gol tomado " + textGolTomado);
 					int numeroDeGols = Integer.parseInt(textGol);
+					int numeroDeGolsTomados = Integer.parseInt(textGolTomado);
 					// aqui foi preciso transformar em int para adicionar ao somaGol
-					somaGol += numeroDeGols;
 					gol.add(new Gols(numeroDeGols));
+					golsTomados.add(new Gols(numeroDeGolsTomados));
 					// aqui adiciono os gols a uma lista
 					contador++;
 					System.out.println(contador);
@@ -142,22 +133,40 @@ public class PesquisaTime{
 		}
 
 //		    calcula a media 
-		mediaGol = (double) (somaGol / gol.size());
-		golsEstipulados = gol.size() - 1;
-		tamanho = gol.size() - 5; // quantidade de jogos que meu cliente quer que compare, sendo que ele gostaria
-									// de apenas os últimos 10 jogos
-
+		
+		quantidadeDeJogos = gol.size() - 1;
+		tamanho = gol.size() - jogosAnalisados; // quantidade de jogos que meu cliente quer que compare, sendo que ele gostaria
+									// de apenas os últimos 5 jogos
 		
 		try {
-			// isso é por conta de alguns times terem menos de 10 jogos
-			for (int a = golsEstipulados; a >= tamanho; a--) {
-				// esse "for reverso" foi para pegar os 10 últimos gols da lista"
+			
+			for (int a = quantidadeDeJogos; a >= tamanho; a--) {
+				mediaCincoGolsFeitos += gol.get(a).getGol();
+				mediaCincoGolsTomados += golsTomados.get(a).getGol();
+			}
+		} catch (IndexOutOfBoundsException e) {
+			//isso é pro quando o time tiver menos de 5 jogos
+			mediaCincoGolsFeitos = 0;
+			mediaCincoGolsTomados = 0;
+			for (int a = quantidadeDeJogos; a >= 0; a--) {
+				mediaCincoGolsFeitos = gol.get(a).getGol();
+				mediaCincoGolsTomados += golsTomados.get(a).getGol();
+			}
+		}
+		
+		mediaGol = mediaCincoGolsFeitos / jogosAnalisados;
+		mediaGolsTomados = mediaCincoGolsTomados / jogosAnalisados;
+		
+		try {
+			
+			for (int a = quantidadeDeJogos; a >= tamanho; a--) {
+				// esse "for reverso" foi para pegar os 5 últimos gols da lista"
 				
 				// inicio do cálculo do coeficiente de variação
 				double fazDesvio = gol.get(a).getGol() - mediaGol;
 //				System.out.println(fazDesvio);
 				desvio.add(new Desvio(fazDesvio));
-				int index0 = golsEstipulados - a; //
+				int index0 = quantidadeDeJogos - a; //
 				double quadrado = Math.pow(desvio.get(index0).getDesvio(), 2.0);
 				varianciaAoQuadrado += quadrado;
 
@@ -170,10 +179,10 @@ public class PesquisaTime{
 			varianciaAoQuadrado = 0;
 			desvio.removeAll(desvio);
 			
-			for (int a = golsEstipulados; a >= tamanhoMenorQueDez; a--) {
+			for (int a = quantidadeDeJogos; a >= 0; a--) {
 				double fazDesvio = gol.get(a).getGol() - mediaGol;
 				desvio.add(new Desvio(fazDesvio));
-				int index0 = golsEstipulados - a; //
+				int index0 = quantidadeDeJogos - a; //
 				double quadrado = Math.pow(desvio.get(index0).getDesvio(), 2.0); 
 				varianciaAoQuadrado += quadrado;
 			}
@@ -191,6 +200,7 @@ public class PesquisaTime{
 		//isso arrendondo o doble pra duas casas decimais
 		System.out.println(gol);
 		System.out.println(mediaGol);//
+		System.out.println(mediaGolsTomados);//
 		System.out.println(varianciaAoQuadrado);
 		System.out.println(variancia);
 		System.out.println(desvioPadrao);
@@ -200,4 +210,51 @@ public class PesquisaTime{
 		System.out.println(nomeTime);
 	}
 
+	public String getNomeTime() {
+		return nomeTime;
+	}
+
+	public void setNomeTime(String nomeTime) {
+		this.nomeTime = nomeTime;
+	}
+	
+	public double getCoeficienteDeVariacao() {
+		return coeficienteDeVariacao;
+	}
+	
+	public void setCoeficienteDeVariacao(double coeficienteDeVariacao) {
+		this.coeficienteDeVariacao = coeficienteDeVariacao;
+	}
+	
+	public double getDesvioPadrao() {
+		return desvioPadrao;
+	}
+
+	public void setDesvioPadrao(double desvioPadrao) {
+		this.desvioPadrao = desvioPadrao;
+	}
+	
+	public double getMediaGol() {
+		return mediaGol;
+	}
+
+	public void setMediaGol(double mediaGol) {
+		this.mediaGol = mediaGol;
+	}
+	
+	public double getMediaGolsTomados() {
+		return mediaGolsTomados;
+	}
+
+	public void setMediaGolsTomados(double mediaGolsTomados) {
+		this.mediaGolsTomados = mediaGolsTomados;
+	}
+	
+	public int getJogosAnalisados() {
+		return jogosAnalisados;
+	}
+
+	public void setJogosAnalisados(int jogosAnalisados) {
+		this.jogosAnalisados = jogosAnalisados;
+	}
 }

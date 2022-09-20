@@ -1,0 +1,25 @@
+package com.apostas.model;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+
+public class MediaGolsTomados extends PesquisaTime{
+
+	public double mediaGolsTomados;
+
+	public double getMediaGolsTomados() {
+		return mediaGolsTomados;
+	}
+
+	public void setMediaGolsTomados(double mediaGolsTomados) {
+		super.mediaGolsTomados = mediaGolsTomados;
+	}
+
+	public MediaGolsTomados(double mediaGolsTomados) {
+		super.mediaGolsTomados = mediaGolsTomados;
+	}
+	
+	public MediaGolsTomados() {
+	}
+	
+}

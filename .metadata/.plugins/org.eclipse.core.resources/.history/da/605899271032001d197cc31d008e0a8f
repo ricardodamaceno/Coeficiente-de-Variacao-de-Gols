@@ -1,7 +1,0 @@
-package com.apostas.model;
-
-public interface CoeficienteDeVariacao {
-
-	public void mostraCv(double cv);
-	
-}

@@ -13,10 +13,7 @@
     <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.apostas.model.CoeficienteDeVariacao"/>
-    <fullyQualifiedTypeName name="com.apostas.model.PesquisaTime"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxDriver"/>
     <fullyQualifiedTypeName name="java.awt.Dimension"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.Dimension"/>
@@ -25,4 +22,9 @@
     <fullyQualifiedTypeName name="com.apostas.model.MediaGol"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.NoSuchElementException"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.apostas.model.MediaGolsTomados"/>
+    <fullyQualifiedTypeName name="com.apostas.model.PesquisaTime"/>
+    <fullyQualifiedTypeName name="com.apostas.model.JogosAnalisados"/>
 </qualifiedTypeNameHistroy>

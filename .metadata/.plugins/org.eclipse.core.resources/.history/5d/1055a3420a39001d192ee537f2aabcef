@@ -1,0 +1,21 @@
+package com.apostas.model;
+
+public class QuantidadeDeJogos extends PesquisaTime{
+
+	int quantidadeDeJogos;
+
+	public int getQuantidadeDeJogos() {
+		return super.quantidadeDeJogos;
+	}
+
+	public void setQuantidadeDeJogos(int quantidadeDeJogos) {
+		super.quantidadeDeJogos = quantidadeDeJogos;
+	}
+
+	public QuantidadeDeJogos(int quantidadeDeJogos) {
+		super.quantidadeDeJogos = quantidadeDeJogos;
+	}
+	
+	public QuantidadeDeJogos() {
+	}
+}

@@ -1,0 +1,10 @@
+FROM openjdk:11
+RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+RUN tar -xvzf geckodriver*
+RUN chmod +x geckodriver
+RUN export PATH=$PATH:/drivers/geckodriver/geckodriver
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} aposta.jar
+ADD /drivers /target
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/aposta.jar"]
