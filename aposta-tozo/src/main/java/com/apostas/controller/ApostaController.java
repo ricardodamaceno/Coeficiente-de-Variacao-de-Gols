@@ -64,7 +64,7 @@ public class ApostaController {
 				System.out.println("deu erro aqui" + e);
 				time.tearDown();
 				pesqTimes.remove(pesqTimes.size()-1);
-				jogosAnalisados.remove(jogosAnalisados.size()-1);
+//				jogosAnalisados.remove(jogosAnalisados.size()-1);
 				return "redirect:/add-erro";
 			}
 			

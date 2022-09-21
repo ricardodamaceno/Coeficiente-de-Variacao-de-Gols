@@ -129,8 +129,12 @@ public class PesquisaTime{
 //		    calcula a media 
 		
 		quantidadeDeJogos = gol.size() - 1;
-		tamanho = gol.size() - jogosAnalisados; // quantidade de jogos que meu cliente quer que compare, sendo que ele gostaria
-									// de apenas os últimos 5 jogos
+		if(jogosAnalisados <= quantidadeDeJogos) {
+			tamanho = gol.size() - jogosAnalisados; 
+		}else {
+			tamanho = 0;
+			System.out.println("muito fora");
+		}
 		
 		try {
 			
@@ -148,8 +152,17 @@ public class PesquisaTime{
 			}
 		}
 		
-		mediaGol = mediaCincoGolsFeitos / jogosAnalisados;
-		mediaGolsTomados = mediaCincoGolsTomados / jogosAnalisados;
+//		isso é pra não fazer um calculo fora da quantidade de jogos
+		if(jogosAnalisados <= quantidadeDeJogos) {
+			mediaGol = mediaCincoGolsFeitos / jogosAnalisados;
+			mediaGolsTomados = mediaCincoGolsTomados / jogosAnalisados;
+		}else {
+			mediaGol = mediaCincoGolsFeitos / quantidadeDeJogos;
+			mediaGolsTomados = mediaCincoGolsTomados / quantidadeDeJogos;
+		}
+		
+		
+//		calcula o Coeficiente de Variação
 		
 		try {
 			
@@ -192,12 +205,20 @@ public class PesquisaTime{
 		mediaGol = (double) (Math.round(mediaGol*100.0)/100.0);
 		desvioPadrao = (double) (Math.round(desvioPadrao*100.0)/100.0);
 		//isso arrendondo o doble pra duas casas decimais
+		
+		if(jogosAnalisados > quantidadeDeJogos) {
+			//isso é pra exibir o máximo de jogos quando os jogosAnalisados for superior à quantidade de jogos reais
+			jogosAnalisados = 0;
+			jogosAnalisados = quantidadeDeJogos + 1; 
+		}
+		
 		System.out.println(gol);
 		System.out.println(mediaGol);//
 		System.out.println(mediaGolsTomados);//
 		System.out.println(varianciaAoQuadrado);
 		System.out.println(variancia);
 		System.out.println(desvioPadrao);
+		System.out.println(quantidadeDeJogos);
 		System.out.println("A variação é de " + coeficienteDeVariacao 
 				+ " gols em relção à médiia de " + mediaGol + " gols");
 //		System.out.println("A porcentagem de variação é de: " + porcentagemDeVariacao + "%");
