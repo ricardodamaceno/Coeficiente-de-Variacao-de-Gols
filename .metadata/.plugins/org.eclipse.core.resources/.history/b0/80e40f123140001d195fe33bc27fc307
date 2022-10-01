@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport"
+	content="width = device-width, initial-scale = 1, shrink-to-fit = no">
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous">
+<title>Apostas Esportivas</title>
+<style>
+.flex {
+	display: flex;
+}
+
+.space-between {
+	justify-content: space-between;
+}
+
+[data-tooltip] {
+	position: relative;
+	font-weight: bold;
+}
+
+[data-tooltip]:after {
+	display: none;
+	position: absolute;
+	padding: 5px;
+	border-radius: 3px;
+	bottom: calc(100% + 2px);
+	content: attr(data-tooltip);
+	white-space: wrap;
+	background-color: #0095ff;
+	color: White;
+}
+
+[data-tooltip]:hover:after {
+	display: block;
+}
+</style>
+</head>
+
+<body>
+
+	<h1 class="text-center mb-3 mt-3">RESULTADOS</h1>
+	<div class="flex">
+		<table
+			class="table table-striped table-hover table-bordered border-dark p-2 flex-fill">
+			<thead>
+				<tr>
+					<th scope="col">Qnt. Jogos Analisados</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="qnt : ${jogosAnalisados}">
+					<td data-th-text="${qnt.jogosAnalisados}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table
+			class="table table-striped table-hover table-bordered border-dark">
+			<thead>
+				<tr>
+					<th scope="col">Nome do Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="time : ${pesqTimes}">
+					<td data-th-text="${time.nomeTime}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table
+			class="table table-striped table-hover table-bordered border-dark">
+			<thead>
+				<tr>
+					<th scope="col">Média Gols Feitos</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="med : ${media}">
+					<td data-th-text="${med.mediaGol}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table
+			class="table table-striped table-hover table-bordered border-dark">
+			<thead>
+				<tr>
+					<th scope="col">Média Gols Casa</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="medcasa : ${mediaGolCasa}">
+					<td data-th-text="${medcasa.mediaGolCasa}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table
+			class="table table-striped table-hover table-bordered border-dark">
+			<thead>
+				<tr>
+					<th scope="col">Média Gols Fora</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="medfora : ${mediaGolFora}">
+					<td data-th-text="${medfora.mediaGolFora}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table
+			class="table table-striped table-hover table-bordered border-dark">
+			<thead>
+				<tr>
+					<th scope="col">Média Gols Tomados</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="medContra : ${mediaTomados}">
+					<td data-th-text="${medContra.mediaGolsTomados}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table
+			class="table table-striped table-hover table-bordered border-dark">
+			<thead>
+				<tr>
+					<th scope="col"
+						data-tooltip="Coeficiente de Variação dos Gols Feitos">CV(%)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="coeVar : ${cv}">
+					<td data-th-text="${coeVar.coeficienteDeVariacao} + '%'"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table
+			class="table table-striped table-hover table-bordered border-dark">
+			<thead>
+				<tr>
+					<th scope="col" data-tooltip="Desvio Padrão dos Gols Feitos">DP</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="desvioPadrao : ${desvio}">
+					<td data-th-text="${desvioPadrao.desvioPadrao} + ' gols'"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+		<form method="post" action="/add">
+			<!-- <button type="submit" class="btn btn-primary">Voltar</button> -->
+			<a href="/add" class="btn btn-primary" tabindex="-1" role="button"
+				aria-disabled="true">Nova Pesquisa</a> <a href="/voltar"
+				class="btn btn-secondary" tabindex="-1" role="button"
+				aria-disabled="true">Limpar</a>
+		</form>
+	</div>
+</body>
+</html>

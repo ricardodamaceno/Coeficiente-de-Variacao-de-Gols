@@ -17,11 +17,11 @@
 	<form method="post" action="/add">
 		<div class="mb-3 text-center">
 			<label for="exampleInputEmail1" class="form-label mt-3 h1">Nome do Time</label>
-			<input type="text" placeholder="Corinthians" class="form-control" name="nomeTime">
+			<input type="text" placeholder="Corinthians" class="form-control" name="nomeTime" required oninvalid="this.setCustomValidity('Nome do Time é obrigatório.')" oninput="setCustomValidity('')">
 		</div>
 		<div class="mb-3 text-center">
 			<label for="exampleInputEmail1" class="form-label mt-3 h2">Quantidade de Jogos</label>
-			<input type="number" min="1" placeholder="5" class="form-control" name="jogosAnalisados">
+			<input type="number" min="1" placeholder="5" class="form-control" name="jogosAnalisados" required oninvalid="this.setCustomValidity('Quantidade de jogos é obrigatório.')" oninput="setCustomValidity('')">
 		</div>
 		<button type="submit" class="btn btn-primary rounded mx-auto d-block col-md-12">CADASTRAR</button>
 	</form>

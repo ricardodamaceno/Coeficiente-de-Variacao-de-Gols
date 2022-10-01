@@ -27,4 +27,5 @@
     <fullyQualifiedTypeName name="com.apostas.model.MediaGolsTomados"/>
     <fullyQualifiedTypeName name="com.apostas.model.JogosAnalisados"/>
     <fullyQualifiedTypeName name="com.apostas.model.PesquisaTime"/>
+    <fullyQualifiedTypeName name="com.apostas.model.MediaGolCasa"/>
 </qualifiedTypeNameHistroy>

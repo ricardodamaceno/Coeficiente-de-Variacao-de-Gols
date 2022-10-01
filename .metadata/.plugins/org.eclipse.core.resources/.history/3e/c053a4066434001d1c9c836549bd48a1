@@ -1,8 +1,0 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ADD https://github.com/mozilla/geckodriver/releases/download/v0.31.0/geckodriver-v0.31.0-linux64.tar.gz /drivers/geckodriver/geckodriver
-EXPOSE 8080
-ENTRYPOINT [ "java", "-jar", "/app.jar" ]

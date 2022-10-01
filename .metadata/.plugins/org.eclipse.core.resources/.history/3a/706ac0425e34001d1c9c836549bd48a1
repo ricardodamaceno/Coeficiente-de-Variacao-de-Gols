@@ -1,9 +1,0 @@
-FROM openjdk
-
-RUN mkdir /app/aposta
-
-COPY target/*.jar /app/aposta/
-
-EXPOSE 8080
-
-ENTRYPOINT [ "java", "-jar", "/app/aposta/*.jar" ]
